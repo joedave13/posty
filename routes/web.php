@@ -28,7 +28,9 @@ Route::post('login', [LoginController::class, 'login']);
 
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
 
 Route::get('post', function () {
     return view('post.index');
