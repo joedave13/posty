@@ -14,7 +14,7 @@
     <nav class="p-6 bg-white flex justify-between mb-6">
         <ul class="flex items-center">
             <li>
-                <a href="" class="p-3">Home</a>
+                <a href="{{ route('home') }}" class="p-3">Home</a>
             </li>
             <li>
                 <a href="{{ route('dashboard') }}" class="p-3">Dashboard</a>
@@ -30,7 +30,12 @@
                 <a href="" class="p-3">{{ Auth::user()->name }}</a>
             </li>
             <li>
-                <a href="" class="p-3">Logout</a>
+                <a href="javascript:void(0)" class="p-3" onclick="document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+                <form action="{{ route('logout') }}" method="POST" id="logout-form" style="display: none;">
+                    @csrf
+                </form>
             </li>
             @endauth
             @guest
