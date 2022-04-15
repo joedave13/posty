@@ -27,6 +27,11 @@ class PostController extends Controller
         return redirect()->route('post.index');
     }
 
+    public function show(Post $post)
+    {
+        return view('post.show', compact('post'));
+    }
+
     public function destroy(Post $post, Request $request)
     {
         $this->authorize('delete', $post);

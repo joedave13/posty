@@ -42,4 +42,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('post', [PostController::class, 'index'])->name('post.index');
+Route::get('post/{post}', [PostController::class, 'show'])->name('post.show');
+
 Route::get('user/{user:username}', [ProfileController::class, 'index'])->name('user.profile');
