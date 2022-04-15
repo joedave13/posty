@@ -28,9 +28,4 @@ class Post extends Model
     {
         return $this->likes->contains('user_id', $user->id);
     }
-
-    public function postedBy(User $user)
-    {
-        return $this->user_id === $user->id;
-    }
 }

@@ -49,7 +49,7 @@
                 </form>
                 @endif
 
-                @if ($post->postedBy(Auth::user()))
+                @can('delete', $post)
                 <form action="{{ route('post.delete', $post) }}" method="POST" class="mr-2">
                     @csrf
                     @method('DELETE')
@@ -57,7 +57,7 @@
                         <i class="far fa-trash-can"></i>
                     </button>
                 </form>
-                @endif
+                @endcan
                 @endauth
 
                 <span>{{ $post->likes->count() }} {{ Str::plural('like', $post->likes->count()) }}</span>
