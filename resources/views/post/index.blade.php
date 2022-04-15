@@ -3,7 +3,7 @@
 @section('content')
 <div class="flex justify-center">
     <div class="w-8/12 bg-white p-6 rounded-lg">
-        <form action="{{ route('post.store') }}" method="POST">
+        <form action="{{ route('post.store') }}" method="POST" class="mb-4">
             @csrf
             <div class="mb-3">
                 <label for="body" class="sr-only">Body</label>
@@ -23,6 +23,16 @@
                 </button>
             </div>
         </form>
+
+        @forelse ($posts as $post)
+        <div class="mb-4">
+            <a href="" class="font-bold">{{ $post->user->name }}</a> <span class="text-gray-600 text-sm">{{
+                $post->created_at->diffForHumans() }}</span>
+            <p class="mb-2">{{ $post->body }}</p>
+        </div>
+        @empty
+        <p>There is no post.</p>
+        @endforelse
     </div>
 </div>
 @endsection

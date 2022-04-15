@@ -10,7 +10,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('post.index');
+        $posts = Post::all();
+        return view('post.index', compact('posts'));
     }
 
     public function store(Request $request)
@@ -19,13 +20,6 @@ class PostController extends Controller
             'body' => ['required']
         ]);
 
-        // Long Way
-        // Post::create([
-        //     'user_id' => Auth::id(),
-        //     'body' => $request->body
-        // ]);
-
-        // Short Way
         Auth::user()->posts()->create([
             'body' => $request->body
         ]);
