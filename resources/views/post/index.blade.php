@@ -19,7 +19,7 @@
             </div>
             <div>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded font-medium">
-                    Post
+                    <i class="fas fa-fw fa-plus mr-2"></i>Post
                 </button>
             </div>
         </form>
@@ -36,7 +36,7 @@
                 <form action="{{ route('post.like', $post) }}" method="POST" class="mr-1">
                     @csrf
                     <button type="submit" class="bg-blue-800 text-white px-3 rounded">
-                        Like
+                        <i class="fas fa-thumbs-up mr-2"></i>Like
                     </button>
                 </form>
                 @else
@@ -44,13 +44,13 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="bg-red-600 text-white px-3 rounded">
-                        Unlike
+                        <i class="fas fa-thumbs-down mr-2"></i>Unlike
                     </button>
                 </form>
                 @endif
                 @endauth
 
-                <span>{{ $post->likes->count() }} {{ Str::plural('like', $post->likes->count()) }}</span>
+                <span class="ml-2">{{ $post->likes->count() }} {{ Str::plural('like', $post->likes->count()) }}</span>
             </div>
         </div>
         @empty
