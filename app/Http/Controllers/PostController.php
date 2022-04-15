@@ -19,8 +19,14 @@ class PostController extends Controller
             'body' => ['required']
         ]);
 
-        Post::create([
-            'user_id' => Auth::id(),
+        // Long Way
+        // Post::create([
+        //     'user_id' => Auth::id(),
+        //     'body' => $request->body
+        // ]);
+
+        // Short Way
+        Auth::user()->posts()->create([
             'body' => $request->body
         ]);
 
