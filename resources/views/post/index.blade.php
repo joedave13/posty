@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="flex justify-center">
-    <div class="w-8/12 bg-white p-6 rounded-lg">
+    <div class="w-8/12 bg-white p-6 rounded-lg mb-5">
         <form action="{{ route('post.store') }}" method="POST" class="mb-4">
             @csrf
             <div class="mb-3">
@@ -33,14 +33,14 @@
             <div class="flex items-center">
                 @auth
                 @if (!$post->likedBy(Auth::user()))
-                <form action="{{ route('post.like', $post) }}" method="POST" class="mr-1">
+                <form action="{{ route('post.like', $post) }}" method="POST" class="mr-2">
                     @csrf
                     <button type="submit" class="bg-blue-800 text-white px-3 rounded">
                         <i class="fas fa-thumbs-up mr-2"></i>Like
                     </button>
                 </form>
                 @else
-                <form action="{{ route('post.unlike', $post) }}" method="POST" class="mr-1">
+                <form action="{{ route('post.unlike', $post) }}" method="POST" class="mr-2">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="bg-red-600 text-white px-3 rounded">
@@ -48,9 +48,19 @@
                     </button>
                 </form>
                 @endif
+
+                @if ($post->postedBy(Auth::user()))
+                <form action="{{ route('post.delete', $post) }}" method="POST" class="mr-2">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-500">
+                        <i class="far fa-trash-can"></i>
+                    </button>
+                </form>
+                @endif
                 @endauth
 
-                <span class="ml-2">{{ $post->likes->count() }} {{ Str::plural('like', $post->likes->count()) }}</span>
+                <span>{{ $post->likes->count() }} {{ Str::plural('like', $post->likes->count()) }}</span>
             </div>
         </div>
         @empty

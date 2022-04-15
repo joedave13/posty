@@ -26,4 +26,15 @@ class PostController extends Controller
 
         return redirect()->route('post.index');
     }
+
+    public function destroy(Post $post, Request $request)
+    {
+        if (!$post->postedBy($request->user())) {
+            return abort(404);
+        }
+
+        $post->delete();
+
+        return back();
+    }
 }
