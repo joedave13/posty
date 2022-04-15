@@ -31,8 +31,12 @@
             <p class="mb-2">{{ $post->body }}</p>
         </div>
         @empty
-        <p>There is no post.</p>
+        <div class="bg-red-700 p-3 rounded-lg text-white">
+            No Post
+        </div>
         @endforelse
+
+        {{ $posts->links() }}
     </div>
 </div>
 @endsection
