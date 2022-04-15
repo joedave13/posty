@@ -3,6 +3,7 @@
 @section('content')
 <div class="flex justify-center">
     <div class="w-8/12 bg-white p-6 rounded-lg mb-5">
+        @auth
         <form action="{{ route('post.store') }}" method="POST" class="mb-4">
             @csrf
             <div class="mb-3">
@@ -23,6 +24,7 @@
                 </button>
             </div>
         </form>
+        @endauth
 
         @forelse ($posts as $post)
         <x-post :post="$post" />
