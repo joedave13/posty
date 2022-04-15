@@ -30,7 +30,7 @@
         <ul class="flex items-center">
             @auth
             <li>
-                <a href="" class="p-3">{{ Auth::user()->name }}</a>
+                <a href="{{ route('user.profile', Auth::user()) }}" class="p-3">{{ Auth::user()->name }}</a>
             </li>
             <li>
                 <a href="javascript:void(0)" class="p-3" onclick="document.getElementById('logout-form').submit();">

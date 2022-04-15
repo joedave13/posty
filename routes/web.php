@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +42,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('post', [PostController::class, 'index'])->name('post.index');
+Route::get('user/{user:username}', [ProfileController::class, 'index'])->name('user.profile');
